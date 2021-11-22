@@ -8,7 +8,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'pages'))
 app.set('view engine', 'ejs');
 app.use(express.json());
-app.use(express.static('views'))
+app.use(express.static('pages'))
 
 const url = 'mongodb://localhost:27017';
 const clientdb = new MongoClient(url);
@@ -40,8 +40,6 @@ async function authentication(req, res, next) {
   const db = await readDB('users');
   const userMatch = await db.find({username : user}).toArray();
 
-  
-
  if(!userMatch.length || userMatch[0].password != pw){
     res.setHeader('WWW-Authenticate', 'Basic')
     return res.sendStatus(401);
@@ -51,11 +49,16 @@ async function authentication(req, res, next) {
 
 app.use(authentication)
 
-
 app
 
   .get('/', (req, res) => {
     res.render('index.ejs');
+  })
+
+  .post('/postSettings',async (req, res) => {
+    const data = req.body;
+    const db = readDB('userSettings');
+    (await db).insertMany([data])
   })
 
 app.listen(3000);

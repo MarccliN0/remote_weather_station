@@ -6,6 +6,31 @@
 </head>
 <body>
     <h1>Welcome to the Controlled Environment Internet of Things Project</h1>
-    <script async src="script.js"></script>
+    <select class = "modeSelect">
+      <option>Automatic</option>
+      <option>Manual</option>
+    </select>
+    <div class = "autoOptions" hidden>
+      <h2>Automatic mode</h2>
+      <p>Please choose from the given schemes:</p>
+      <select class = "scheme">Modes
+        <option>Lizard</option>
+        <option>Snake</option>
+        <option>Green plant</option>
+        <option>Cactus</option>
+        <option>Hamster</option>
+      </select>
+    </div>
+    <div class = "manualOptions" hidden>
+      <li>Temperature(20 C - 45C)</li>
+      <input type="range" max = "45" min = "20" class = "temperatureSetting">
+      <li>Humidity(50% - 90%)</li>
+      <input type="range" max = "90" min = "50" class = "humiditySetting">
+      <li>Light level(To be implemented)</li>
+      <input type="range" max = "1000" min = "100" class = "lightLevelSetting" hidden>
+    </div>
+    <br>
+    <button type="submit" class="sendSettings">Submit</button>
+    <script async src="script/script.js"></script>
 </body>
 </html>
