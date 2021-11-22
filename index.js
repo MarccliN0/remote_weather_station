@@ -68,10 +68,11 @@ app
   })
 
   .delete('/deletAccount', (req, res) => {
-
+    //TODO: implement a way to delete a user profile and all the data with it
   })
 
   .get('/getCurrentValue', (req, res) => {
+    //TODO: implement getting data from LPCXpresso 1549 board
     const data = {
       temp: '25',
       humidity: '70%',
