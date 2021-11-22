@@ -21,6 +21,7 @@ async function readDB(CollectionName) {
   return collection;
 }
 
+//TODO: implement a better authentication system than browser pop-up
 async function authentication(req, res, next) {
   let authheader = req.headers.authorization;
 
@@ -47,19 +48,46 @@ async function authentication(req, res, next) {
   return next()
 }
 
-app.use(authentication)
-
 app
 
+  .use(authentication)
+
   .get('/', (req, res) => {
+    res.redirect('/index');
+  })
+
+  .get('/index', (req, res) => {
     res.render('index.ejs');
   })
 
   .post('/postSettings',async (req, res) => {
     const data = req.body;
     const db = readDB('userSettings');
-    (await db).insertMany([data])
+    (await db).insertMany([data]);
+    //TODO: implement sending data to LPCXpresso 1549 board
   })
+
+  .delete('/deletAccount', (req, res) => {
+
+  })
+
+  .get('/getCurrentValue', (req, res) => {
+    const data = {
+      temp: '25',
+      humidity: '70%',
+      lightLevel: '--'
+    }
+    res.send(data);
+  })
+
+
+  //TODO: implement logging out mechanics
+
+
+  //TODO: customize with css
+
+  //TODO: implement light level settings
+
 
 app.listen(3000);
 
