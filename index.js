@@ -84,6 +84,7 @@ app
 
   //TODO: implement logging out mechanics
 
+  //check if commit appears in gitlab 
 
   //TODO: customize with css
 
