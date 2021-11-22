@@ -86,7 +86,7 @@ sendSettings.addEventListener('click', async () => {
         scheme,
         temperature:'25',
         humidity:'65',
-        lightLevek:'--',
+        lightLevel:'--',
         time: Date.now()
       }
       await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
