@@ -26,10 +26,10 @@ async function authentication(req, res, next) {
   let authheader = req.headers.authorization;
 
   if (!authheader) {
-    res.setHeader('WWW-Authenticate', 'Basic')
     res.status(401);
     return next();
   }
+  
 
   const salt = 'neverguess';
 
@@ -37,13 +37,17 @@ async function authentication(req, res, next) {
   const user = auth[0];
   const pw = pbkdf2.pbkdf2Sync(auth[1], salt, 1, 32, 'sha512').toString('hex');
   req.user = user;
+  console.log(auth);
+
+  let createAuth = new Buffer.from(auth).toString('base64');
+  console.log(createAuth)
 
   const db = await readDB('users');
   const userMatch = await db.find({username : user}).toArray();
 
  if(!userMatch.length || userMatch[0].password != pw){
-    res.setHeader('WWW-Authenticate', 'Basic')
-    return res.sendStatus(401);
+  res.status(401);
+  return next();
   }
   return next()
 }
@@ -53,7 +57,7 @@ app
   .use(authentication)
 
   .get('/', (req, res) => {
-    res.redirect('/index');
+    res.sendFile(path.join(__dirname, 'pages/login.html'));
   })
 
   .get('/index', (req, res) => {
@@ -80,6 +84,8 @@ app
     }
     res.send(data);
   })
+
+  
 
 
   //TODO: implement logging out mechanics
