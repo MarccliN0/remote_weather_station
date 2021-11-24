@@ -9,14 +9,10 @@ setInterval(() => {
     autoOptions.hidden = true;
     manualOptions.hidden = false;
   }
-}, 500);
-
-
-setInterval(() => {
   const currentTemp = document.querySelector('.currentTemp');
   const currentHumidity = document.querySelector('.currentHumidity');
   const currentLightLevel = document.querySelector('.currentLightLevel');
-
+  
   fetch('/getCurrentValue')
   .then(async(response) => {
     const data = await response.json();
@@ -24,7 +20,8 @@ setInterval(() => {
     currentHumidity.innerText = 'Current humidity:' + data.humidity;
     currentLightLevel.innerText = 'Current light level:' + data.lightLevel;
   })
-}, 1000)
+}, 1000);
+
 
 const sendSettings = document.querySelector('.sendSettings');
 sendSettings.addEventListener('click', async () => {
