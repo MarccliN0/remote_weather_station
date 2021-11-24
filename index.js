@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static('pages'))
 app.use(cookieParser());
 
-const url = 'mongosh "mongodb+srv://iot3.s87ch.mongodb.net/IoT3" --username Marci';
+const url = 'mongodb+srv://Marci:Marci0704@iot3.s87ch.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const clientdb = new MongoClient(url);
 
 async function readDB(CollectionName) {
@@ -28,8 +28,9 @@ const salt = 'neverguess';
 //TODO: implement a better authentication system than browser pop-up
 
 
-async function authentication(req, res, next) {
+function authentication(req, res, next) {
   let idcookie = req.cookies.idcookie;
+  console.log(idcookie);
   if (!idcookie) {
     res.redirect('/')
   } else {
@@ -40,7 +41,7 @@ async function authentication(req, res, next) {
 app
 
   .get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages/login.html'));
+   res.sendFile(path.join(__dirname, 'pages/login.html')); 
   })
 
   .get('/index', authentication, (req, res) => {
@@ -60,7 +61,7 @@ app
     //TODO: implement a way to delete a user profile and all the data with it
   })
 
-  .get('/getCurrentValue', (req, res) => {
+  .get('/getCurrentValue',  (req, res) => {
     //TODO: implement getting data from LPCXpresso 1549 board
     const data = {
       temp: '25',
@@ -114,7 +115,7 @@ app
 //TODO: implement light level settings
 
 app.use((req, res, next) => {
-  res.status(404).send('Page not found')
+  res.status(404).send('404 Page not found')
 })
 
 
