@@ -24,4 +24,5 @@ reg.addEventListener('click', async () => {
   }
   console.log(data)
   await fetch('/register', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+  window.location = '/index'
 })
