@@ -5,11 +5,20 @@
     <title>Controlled Environment</title>
 </head>
 <body>
-    <h1 class = "header" id = "login-header">Please login to access the project</h1>
-    Username: <input type="text" class="username" id= "username-input">
-    Password: <input type="text" class="password" id= "password-input">
-    <button type="submit" class="login login-submit" id= "login-button">Login</button>
-    <button type="submit" class="register login-submit" id = "register-button">Register</button>
-    <script async src="script/login.js"></script>
+    <h1 class ="header" id ="login-header">Please login to access the project</h1>
+    <div class="container">
+        <div>
+            <label for="user"><b>Username</b></label>
+            <input type="text" class="username" id="username-input" placeholder="Enter Username" required>
+        </div>
+        <div>
+            <label for="pass"><b>Password</b></label>
+            <input type="password" class="password" id="password-input" placeholder="Enter Password" required>
+        </div>
+        <button type="submit" class="login login-submit" id="login-button">Login</button>
+        <button type="submit" class="register login-submit" id ="register-button">Register</button>
+        <label><input type="checkbox" name="remember"> Remember me</label>
+        <script async src="script/login.js"></script>
+    </div>
 </body>
 </html>
