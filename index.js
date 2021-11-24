@@ -52,7 +52,7 @@ const salt = 'neverguess';
 //   }
 //   return next()
 // }
-
+//lolo
 async function authentication(req, res, next){
   let idcookie = req.cookies.idcookie;
   if(!idcookie){
