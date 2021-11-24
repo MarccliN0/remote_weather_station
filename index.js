@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static('pages'))
 app.use(cookieParser());
 
-const url = 'mongodb://localhost:27017';
+const url = 'mongosh "mongodb+srv://iot3.s87ch.mongodb.net/IoT3" --username Marci';
 const clientdb = new MongoClient(url);
 
 async function readDB(CollectionName) {
@@ -95,8 +95,11 @@ app
     res.redirect('/index')
   })
 
-  .get('/archive', authentication, (req, res) => {
-    res.send('To be implemented...');
+  .get('/archive', authentication, async (req, res) => {
+    let db = await readDB('userSettings');
+    const userSettings = await db.find().toArray();
+
+    res.render('archive.ejs', {userSettings: userSettings});
   })
 
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ConEnv Archive</title>
+</head>
+
+<body>
+  <h1>Archive</h1>
+  <h2>Automatic mode Archive</h2>
+  <table class="archiveSetting" style="border:1px solid #333">
+    <thead style="background-color:#333; color:#fff">
+      <td>Scheme</td>
+      <td>Timestamp</td>
+      <td>Temperature</td>
+      <td>Light Level</td>
+      <td>Humidity</td>
+    </thead>
+    <% for (const item of userSettings) { %>
+      <% if (item.mode  =="Automatic" ) { %> 
+        <tr style="border:1px solid #333">
+          <td><%- item.scheme%></td>
+          <td><%- item.time %></td>
+          <td><%- item.temperature %> </td> 
+          <td><%- item.lightLevel %> </td>
+          <td><%- item.humidity %></td>  
+      </tr>
+      <% } %>
+      <% } %>
+    </table>
+     <h2>Manual mode archive</h2>
+     <table class="archiveSetting" style="border:1px solid #333">
+       <thead style="background-color:#333; color:#fff">
+         <td>Timestamp</td>
+         <td>Temperature</td>
+         <td>Light Level</td>
+         <td>Humidity</td>
+       </thead>
+     <% for (const item of userSettings) { %>
+      <% if (item.mode == "Manual") { %>
+        <tr>
+            <td><%- item.time %></td>
+           <td><%- item.temperature %> </td> 
+           <td><%- item.lightLevel %> </td>
+           <td><%- item.humidity %></td>  
+        </tr>
+        <% } %>
+        <% } %>
+      </table>
+    <script async src="script/archive.js"></script>
+</body>
+
+</html>
