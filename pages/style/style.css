@@ -1,10 +1,61 @@
+/*Preliminary CSS*/
+
 body{
 background-image: url("./images/Jungle.png");
 background-size: 100%;
 background-color: #cccccc;
 }
+
 #login-header{
 font-size: 80px;
 color: blue;
+}
 
+div[class="container"] {
+border-style: solid;
+border-color: lightgreen;
+width: 450px;
+text-align: center;
+background-color: green;
+margin: auto;
+}
+
+input[type=text], input[type=password] {
+padding: 15px;
+font-size: 15px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid black;
+box-sizing: border-box;
+width: 390px;
+border-radius: 5px;
+}
+
+button[id="login-button"] {
+background-color: rgb(0, 194, 0);
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: 1px solid black;
+width: 150px;
+border-radius: 5px;
+}
+
+button[id="register-button"] {
+background-color: red;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: 1px solid black;
+width: 150px;
+border-radius: 5px;
+}
+
+button:hover {
+opacity: 0.8;
+}
+
+label[for="user"], label[for="pass"] {
+color: white;
+font-family: Arial, Helvetica, sans-serif;
 }
