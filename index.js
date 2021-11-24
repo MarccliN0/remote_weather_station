@@ -95,6 +95,10 @@ app
     res.redirect('/index')
   })
 
+  .get('/archive', authentication, (req, res) => {
+    res.send('To be implemented...');
+  })
+
 
 
 
