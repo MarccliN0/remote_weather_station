@@ -1,0 +1,9 @@
+body{
+background-image: url("Jungle.png");
+background-color: #cccccc;
+}
+#login-header{
+font-size: 80px;
+color: blue;
+
+}
