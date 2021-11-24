@@ -104,7 +104,6 @@ app
   })
 
 
-//test
 
 //TODO: implement logging out mechanics
 
