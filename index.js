@@ -105,7 +105,7 @@ app
       res.redirect('/index')
     }
   })
-
+//lol
   .post('/register', async( req, res) => {
     const db = await readDB('users');
     const username = req.body.username;
