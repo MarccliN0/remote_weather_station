@@ -28,7 +28,30 @@ const salt = 'neverguess';
 //TODO: implement a better authentication system than browser pop-up
 
 
+<<<<<<< HEAD
 async function authentication(req, res, next) {
+=======
+//   let auth = new Buffer.from(authheader.split(' ')[1], 'base64').toString().split(':');
+//   const user = auth[0];
+//   const pw = pbkdf2.pbkdf2Sync(auth[1], salt, 1, 32, 'sha512').toString('hex');
+//   req.user = user;
+//   console.log(auth);
+
+//   let createAuth = new Buffer.from(auth).toString('base64');
+//   console.log(createAuth)
+
+//   const db = await readDB('users');
+//   const userMatch = await db.find({ username: user }).toArray();
+
+//   if (!userMatch.length || userMatch[0].password != pw) {
+//     res.status(401);
+//     return next();
+//   }
+//   return next()
+// }
+//lolo
+async function authentication(req, res, next){
+>>>>>>> d479fbe0c5cc57bff04b70460610a81643dc8c67
   let idcookie = req.cookies.idcookie;
   if (!idcookie) {
     res.redirect('/')
