@@ -8,7 +8,9 @@ background-color: #cccccc;
 
 #login-header{
 font-size: 80px;
-color: blue;
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+text-align: center;
 }
 
 div[class="container"] {
@@ -43,6 +45,16 @@ border-radius: 5px;
 
 button[id="register-button"] {
 background-color: red;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: 1px solid black;
+width: 150px;
+border-radius: 5px;
+}
+
+button[id="sh_pss"] {
+background-color: rgb(81, 188, 255);
 color: white;
 padding: 14px 20px;
 margin: 8px 0;

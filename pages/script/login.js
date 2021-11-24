@@ -26,3 +26,12 @@ reg.addEventListener('click', async () => {
   await fetch('/register', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
   window.location = '/index'
 })
+
+function show_pass() {
+  var pass = document.getElementById("password-input");
+  if (pass.type === "password") {
+    pass.type = "text";
+  } else {
+    pass.type = "password";
+  }
+}
