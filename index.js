@@ -30,7 +30,6 @@ const salt = 'neverguess';
 
 function authentication(req, res, next) {
   let idcookie = req.cookies.idcookie;
-  console.log(idcookie);
   if (!idcookie) {
     res.redirect('/')
   } else {
@@ -50,8 +49,9 @@ app
 
   .post('/postSettings', async (req, res) => {
     const data = req.body;
-    const db = readDB('userSettings');
-    (await db).insertMany([data]);
+    const db = await readDB('userSettings');
+    console.log(data);
+    await db.insertMany([data]);
     //TODO: implement sending data to LPCXpresso 1549 board
   })
 
@@ -99,15 +99,12 @@ app
   .get('/archive', authentication, async (req, res) => {
     let db = await readDB('userSettings');
     const userSettings = await db.find().toArray();
-
     res.render('archive.ejs', {userSettings: userSettings});
   })
 
 
 
 //TODO: implement logging out mechanics
-
-//check if commit appears in gitlab 
 
 //TODO: customize with css
 

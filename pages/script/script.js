@@ -1,3 +1,4 @@
+
 setInterval(() => {
   const modeSelect = document.querySelector('.modeSelect').value;
   const autoOptions = document.querySelector('.autoOptions');
@@ -108,4 +109,11 @@ logout.addEventListener('click', e => {
   e.preventDefault();
   document.cookie = "idcookie=; Max-Age=0";
   window.location = '/'
+})
+
+const toArchive = document.querySelector('.toArchive');
+
+toArchive.addEventListener('click', e => {
+  window.location = "/archive"
+  e.preventDefault()
 })
