@@ -40,7 +40,7 @@ body {
 
 }
 
-.username {
+.usernameDiv {
     grid-row-start: row-start 2;
     grid-column-start: col-start 1;
     grid-column-end: span 2;
@@ -54,7 +54,7 @@ body {
 
 }
 
-.password {
+.passwordDiv {
     grid-row-start: row-start 2;
     grid-column-start: col-start 3;
     grid-column-end: span 2;

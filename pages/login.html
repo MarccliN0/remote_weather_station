@@ -8,13 +8,13 @@
 <body>
     <div class= "body-div">
     <h1 class ="header" id ="login-header">Controlled Environment: Please log in to proceed</h1>
-        <div class="username" id="username-input">
+        <div class="usernameDiv" id="username-input">
             <label for="user"><b>Username</b></label>
-            <input type="text"  placeholder="Enter Username" required>
+            <input type="text"  placeholder="Enter Username" class="username" required>
         </div>
-        <div  class="password" id="password-input">
+        <div  class="passwordDiv" id="password-input">
             <label for="pass"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" required>
+            <input type="password" placeholder="Enter Password" class="password"required>
                 <button id="show-password" onclick="show_pass()"></button>
         </div>
         <button type="submit" class="login login-submit" id="login-button">Login</button>

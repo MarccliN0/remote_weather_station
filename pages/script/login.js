@@ -28,7 +28,7 @@ reg.addEventListener('click', async () => {
 })
 
 function show_pass() {
-  var pass = document.getElementById("password-input");
+  var pass = document.querySelector('.password');
   if (pass.type === "password") {
     pass.type = "text";
   } else {
