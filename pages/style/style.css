@@ -53,7 +53,12 @@ body {
     padding: 20px;
     text-align: center;
 }
-
+#show-password{
+    background-image: url("./images/pwon.png");
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
 .login {
     grid-row-start: row-start 3;
     grid-column-start: col-start 2;

@@ -6,8 +6,7 @@
     <title>Controlled Environment</title>
 </head>
 <body>
-    <h1 class ="header" id ="login-header">Controlled Environment</h1>
-    <div class="container">
+    <h1 class ="header" id ="login-header">Controlled Environment: PLease log in to proceed</h1>
         <div class="username" id="username-input">
             <label for="user"><b>Username</b></label>
             <input type="text"  placeholder="Enter Username" required>
@@ -15,13 +14,11 @@
         <div  class="password" id="password-input">
             <label for="pass"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" required>
-            <div>
-                <button id="sh_pss" onclick="show_pass()">Show Password</button>
-            </div>
+                <button id="show-password" onclick="show_pass()"></button>
         </div>
         <button type="submit" class="login login-submit" id="login-button">Login</button>
         <button type="submit" class="register login-submit" id ="register-button">Register</button>
         <script async src="script/login.js"></script>
-    </div>
+   
 </body>
 </html>
