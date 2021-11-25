@@ -1,10 +1,78 @@
-body{
-background-image: url("./images/Jungle.png");
-background-size: 100%;
-background-color: #cccccc;
+body {
+    display: grid;
+    padding: 20px;
+    background-image: url("./images/Jungle.png");
+    background-size: cover;
+    background-color: #cccccc;
 }
-#login-header{
-font-size: 80px;
-color: blue;
 
+#login-header {
+    grid-column-start: col-start 1;
+    grid-row-start: row-start 1;
+    grid-column-end: span 4;
+    background-color: black;
+    opacity: 70%;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+
+}
+
+.login-submit {
+    padding: 20px;
+    text-align: center;
+}
+
+.input-box {
+    padding: 20px;
+    text-align: center;
+}
+
+.username {
+    grid-row-start: row-start 2;
+    grid-column-start: col-start 1;
+    grid-column-end: span 2;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    opacity: 70%;
+    padding: 20px;
+    text-align: center;
+}
+
+.password {
+    grid-row-start: row-start 2;
+    grid-column-start: col-start 3;
+    grid-column-end: span 2;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    opacity: 70%;
+    padding: 20px;
+    text-align: center;
+}
+
+.login {
+    grid-row-start: row-start 3;
+    grid-column-start: col-start 2;
+    grid-column-end: span 1;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    opacity: 70%;
+    padding: 20px;
+    text-align: center;
+}
+
+.register {
+    grid-row-start: row-start 3;
+    grid-column-start: col-start 3;
+    grid-column-end: span 1;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    opacity: 70%;
+    padding: 20px;
+    text-align: center;
 }
