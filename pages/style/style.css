@@ -12,6 +12,7 @@ body {
     grid-column-end: span 4;
     background-color: black;
     opacity: 70%;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
     color: rgb(255, 255, 255);
     padding: 10px;
