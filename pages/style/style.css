@@ -1,11 +1,16 @@
 body {
-    display: grid;
-    padding: 20px;
+    
     background-image: url("./images/Jungle.png");
     background-size: cover;
     background-color: #cccccc;
+    padding: 20px;
 }
-
+.body-div{
+    background-color: black;
+    opacity: 70%;
+    display: grid;
+    padding: 14%;
+}
 #login-header {
     grid-column-start: col-start 1;
     grid-row-start: row-start 1;
@@ -15,19 +20,24 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
     color: rgb(255, 255, 255);
-    padding: 10px;
     text-align: center;
+    margin: auto;
+    width: 90%;
 
 }
 
 .login-submit {
     padding: 20px;
     text-align: center;
+    margin: auto;
+
 }
 
 .input-box {
     padding: 20px;
     text-align: center;
+    margin: auto;
+
 }
 
 .username {
@@ -40,6 +50,8 @@ body {
     opacity: 70%;
     padding: 20px;
     text-align: center;
+    margin: auto;
+
 }
 
 .password {
@@ -52,6 +64,8 @@ body {
     opacity: 70%;
     padding: 20px;
     text-align: center;
+    margin: auto;
+
 }
 #show-password{
     background-image: url("./images/pwon.png");
@@ -69,6 +83,8 @@ body {
     opacity: 70%;
     padding: 20px;
     text-align: center;
+    margin: auto;
+
 }
 
 .register {
@@ -81,4 +97,6 @@ body {
     opacity: 70%;
     padding: 20px;
     text-align: center;
+    margin: auto;
+
 }
