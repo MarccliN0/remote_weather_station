@@ -9,18 +9,32 @@ body {
     color: rgb(255, 255, 255);
 
 }
-
+a {
+    display: block;
+}
+a:link, a:visited {
+    background-color: #4315af8a;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  a:hover, a:active {
+    background-color: #5016daad;
+  }
 .body-div {
     background-color: rgba(0, 0, 0, 0.652);
     display: grid;
-    padding: 10%;
+    padding: 8%;
 
 }
 
 #login-header {
-    grid-column-start: col-start 1;
-    grid-row-start: row-start 1;
-    grid-column-end: span 4;
+    grid-column-start: col-start 0;
+    grid-row-start: row-start 0;
+    grid-column-end: span 6;
     font-size: 50px;
     color: rgb(255, 255, 255);
     text-align: center;
@@ -30,9 +44,9 @@ body {
 }
 
 #login-title {
-    grid-column-start: col-start 1;
-    grid-row-start: row-start 2;
-    grid-column-end: span 4;
+    grid-column-start: col-start 0;
+    grid-row-start: row-start 1;
+    grid-column-end: span 6;
     font-size: 30px;
     color: rgb(255, 255, 255);
     text-align: center;
@@ -54,7 +68,7 @@ body {
 }
 
 .username-div {
-    grid-row-start: row-start 3;
+    grid-row-start: row-start 2;
     grid-column-start: col-start 1;
     grid-column-end: span 2;
     font-size: 25px;
@@ -75,7 +89,7 @@ body {
 
 
 .password-div {
-    grid-row-start: row-start 3;
+    grid-row-start: row-start 2;
     grid-column-start: col-start 3;
     grid-column-end: span 2;
     font-size: 25px;
@@ -110,7 +124,7 @@ body {
 }
 
 .login {
-    grid-row-start: row-start 4;
+    grid-row-start: row-start 3;
     grid-column-start: col-start 2;
     grid-column-end: span 1;
     font-size: 25px;
@@ -123,7 +137,7 @@ body {
 }
 
 .register {
-    grid-row-start: row-start 4;
+    grid-row-start: row-start 3;
     grid-column-start: col-start 3;
     grid-column-end: span 1;
     background-color: rgba(0, 0, 0, 0.652);
@@ -146,7 +160,7 @@ footer {
 #title {
     padding: 20px;
     grid-row-start: row-start 5;
-    grid-column-start: col-start 1;
+    grid-column-start: col-start 0;
     grid-column-end: span 2;
     font-size: 15px;
 
@@ -154,7 +168,7 @@ footer {
 
 #marwan {
     grid-row-start: row-start 6;
-    grid-column-start: col-start 1;
+    grid-column-start: col-start 0;
     grid-column-end: span 1;
     padding: 10px;
     font-size: 15px;
@@ -163,7 +177,7 @@ footer {
 
 #isa {
     grid-row-start: row-start 6;
-    grid-column-start: col-start 2;
+    grid-column-start: col-start 1;
     grid-column-end: span 1;
     padding: 10px;
     font-size: 15px;
@@ -172,7 +186,7 @@ footer {
 
 #marcell {
     grid-row-start: row-start 6;
-    grid-column-start: col-start 3;
+    grid-column-start: col-start 2;
     grid-column-end: span 1;
     padding: 10px;
     font-size: 15px;
@@ -181,7 +195,7 @@ footer {
 
 #leila {
     grid-row-start: row-start 6;
-    grid-column-start: col-start 4;
+    grid-column-start: col-start 3;
     grid-column-end: span 1;
     padding: 10px;
     font-size: 15px;
