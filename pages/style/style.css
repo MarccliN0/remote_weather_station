@@ -112,14 +112,14 @@ a:link, a:visited {
 .show {
     background-image: url("./images/pwon.png");
     background-size: cover;
-    width: 25px;
+    width: 24px;
     height: 22px;
 }
 
 .no-show {
     background-image: url("./images/pwoff.png");
     background-size: cover;
-    width: 25px;
+    width: 24px;
     height: 22px;
 }
 
