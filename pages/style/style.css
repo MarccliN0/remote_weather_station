@@ -4,10 +4,11 @@ body {
     background-size: cover;
     background-color: #cccccc;
     padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 .body-div{
-    background-color: black;
-    opacity: 70%;
+    background-color: rgba(0, 0, 0, 0.652);
     display: grid;
     padding: 14%;
 }
@@ -15,9 +16,6 @@ body {
     grid-column-start: col-start 1;
     grid-row-start: row-start 1;
     grid-column-end: span 4;
-    background-color: black;
-    opacity: 70%;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
     color: rgb(255, 255, 255);
     text-align: center;
@@ -46,8 +44,6 @@ body {
     grid-column-end: span 2;
     font-size: 25px;
     color: rgb(255, 255, 255);
-    background-color: black;
-    opacity: 70%;
     padding: 20px;
     text-align: center;
     margin: auto;
@@ -60,27 +56,30 @@ body {
     grid-column-end: span 2;
     font-size: 25px;
     color: rgb(255, 255, 255);
-    background-color: black;
-    opacity: 70%;
     padding: 20px;
     text-align: center;
     margin: auto;
 
 }
-#show-password{
+.show{
     background-image: url("./images/pwon.png");
     background-size: cover;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 22px;
+}
+.no-show{
+    background-image: url("./images/pwoff.png");
+    background-size: cover;
+    width: 25px;
+    height: 22px;
 }
 .login {
     grid-row-start: row-start 3;
     grid-column-start: col-start 2;
     grid-column-end: span 1;
     font-size: 25px;
+    background-color: rgba(0, 0, 0, 0.652);
     color: rgb(255, 255, 255);
-    background-color: black;
-    opacity: 70%;
     padding: 20px;
     text-align: center;
     margin: auto;
@@ -91,10 +90,10 @@ body {
     grid-row-start: row-start 3;
     grid-column-start: col-start 3;
     grid-column-end: span 1;
+    background-color: rgba(0, 0, 0, 0.652);
+    background-color: rgba(0, 0, 0, 0.652);
     font-size: 25px;
     color: rgb(255, 255, 255);
-    background-color: black;
-    opacity: 70%;
     padding: 20px;
     text-align: center;
     margin: auto;

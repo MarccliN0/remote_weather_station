@@ -31,7 +31,13 @@ function show_pass() {
   var pass = document.querySelector('.password');
   if (pass.type === "password") {
     pass.type = "text";
+    var element = document.getElementById("show-password");
+    element.classList.add("no-show");
+    element.classList.remove("show")
   } else {
     pass.type = "password";
+    var element = document.getElementById("show-password");
+    element.classList.add("show");
+    element.classList.remove("no-show")
   }
 }
