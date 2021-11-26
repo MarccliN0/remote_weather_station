@@ -1,25 +1,37 @@
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="shortcut icon" type="image/jpg" href="./style/images/Tree Icon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="./style/images/Tree Icon.png" />
     <meta charset="UTF-8">
     <title>Controlled Environment</title>
 </head>
+
 <body>
-    <div class= "body-div">
-    <h1 class ="header" id ="login-header">Controlled Environment: Please log in to proceed</h1>
-        <div class="usernameDiv" id="username-input">
-            <label for="user"><b>Username</b></label>
-            <input type="text"  placeholder="Enter Username" class="username" required>
+    <div class="body-div" id="username-div">
+        <h1 class="header" id="login-header">Controlled Environment Project</h1>
+        <h2 class="title" id="login-title">Please log in to proceed!</h2>
+        <div class="username-div" id="username-input">
+            <label for="user" id="username-label"><b>Username:</b></label>
+            <input type="text" id="username-input" placeholder="Enter Username" class="username" required>
         </div>
-        <div  class="passwordDiv" id="password-input">
-            <label for="pass"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" class="password"required>
-                <button id="show-password" class="no-show" onclick="show_pass()"></button>
+        <div class="password-div" id="password-div">
+            <label for="pass" id="password-label"><b>Password:</b></label>
+            <input type="password" placeholder="Enter Password" id="password-input" required>
+            <button id="show-password" class="no-show" onclick="show_pass()"></button>
         </div>
         <button type="submit" class="login login-submit" id="login-button">Login</button>
-        <button type="submit" class="register login-submit" id ="register-button">Register</button>
+        <button type="submit" class="register login-submit" id="register-button">Register</button>
+
         <script async src="script/login.js"></script>
     </div>
+    <footer>
+        <div id=s"title">Created by:</div>
+        <div id="marwan">Marwan Al-Obaidi</div>
+        <div id="isa">Isabela Namaz</div>
+        <div id="marcell">Marcell Csortos</div>
+        <div id="leila">Leila Demeter</div>
+    </footer>
 </body>
+
 </html>
