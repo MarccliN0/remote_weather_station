@@ -30,11 +30,8 @@ const salt = 'neverguess';
 
 function authentication(req, res, next) {
   let idcookie = req.cookies.idcookie;
-  if (!idcookie) {
-    res.redirect('/')
-  } else {
-    next();
-  }
+  if(idcookie) return next();
+  res.redirect('/');
 }
 
 app
@@ -75,7 +72,9 @@ app
     const db = await readDB('users');
     const username = req.body.username;
     const userMatch = await db.find({ username: username }).toArray();
+
     const pw = pbkdf2.pbkdf2Sync(req.body.password, salt, 1, 32, 'sha512').toString('hex');
+
     if (!userMatch.length || userMatch[0].password != pw) return 
     res.cookie("idcookie", `${username}:${pw}`, { httpOnly: true, expires: new Date(Date.now() + 900000) });
     res.redirect('/index')
