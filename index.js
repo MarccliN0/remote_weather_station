@@ -76,10 +76,9 @@ app
     const username = req.body.username;
     const userMatch = await db.find({ username: username }).toArray();
     const pw = pbkdf2.pbkdf2Sync(req.body.password, salt, 1, 32, 'sha512').toString('hex');
-    if (userMatch.length && userMatch[0].password == pw) {
-      res.cookie("idcookie", `${username}:${pw}`, { httpOnly: true, expires: new Date(Date.now() + 900000) });
-      res.redirect('/index')
-    }
+    if (!userMatch.length || userMatch[0].password != pw) return 
+    res.cookie("idcookie", `${username}:${pw}`, { httpOnly: true, expires: new Date(Date.now() + 900000) });
+    res.redirect('/index')
   })
 
   .post('/register', async (req, res) => {
@@ -101,7 +100,6 @@ app
     const userSettings = await db.find().toArray();
     res.render('archive.ejs', {userSettings: userSettings});
   })
-
 
 
 //TODO: implement logging out mechanics
