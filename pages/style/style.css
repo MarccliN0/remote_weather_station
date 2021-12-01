@@ -11,7 +11,7 @@ body {
 
 }
 
-.header-index{
+.header-index {
     position: fixed;
     top: 0;
     left: 0;
@@ -28,7 +28,7 @@ body {
     top: 150px;
     left: 450px;
     right: 450px;
-    
+
 
 }
 
@@ -125,6 +125,10 @@ body {
 }
 
 .login {
+    width: 150px;
+
+    border-radius: 50px;
+    border: 2px solid #eff5e8;
     grid-row-start: row-start 4;
     grid-column-start: col-start 2;
     grid-column-end: span 1;
@@ -138,6 +142,9 @@ body {
 }
 
 .register {
+    width: 150px;
+    border-radius: 50px;
+    border: 2px solid #eff5e8;
     grid-row-start: row-start 4;
     grid-column-start: col-start 3;
     grid-column-end: span 1;
