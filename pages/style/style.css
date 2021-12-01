@@ -77,13 +77,21 @@ body {
     padding: 20px;
     text-align: center;
     margin: auto;
+    display: grid;
+
 }
 
 #username-label {
+    grid-row-start: row-start 1;
+    grid-column-start: col-start 1;
     font-size: 25px;
 }
 
 #username-input {
+    grid-row-start: row-start 1;
+    grid-column-start: col-start 2;
+    grid-column-end: span 2;
+
     height: 25px;
     font-size: 20px;
 }
@@ -98,26 +106,47 @@ body {
     padding: 20px;
     text-align: center;
     margin: auto;
+    display: grid;
 }
 
 #password-label {
+    grid-row-start: row-start 1;
+    grid-column-start: col-start 1;
     font-size: 25px;
 
 }
 
 #password-input {
+    grid-row-start: row-start 1;
+    grid-column-start: col-start 2;
+    grid-column-end: span 2;
     height: 25px;
     font-size: 20px;
 }
-
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}
 .show {
+    grid-row-start: row-start 1;
+    grid-column-start: col-start 3;
     background-image: url("./images/pwon.png");
     background-size: cover;
     width: 24px;
     height: 22px;
+    margin-left: -30px;
+    margin-top: 2px;
+
+    cursor: pointer;
 }
 
 .no-show {
+    margin-left: -30px;
+    margin-top: 2px;
+
+    cursor: pointer;
+    grid-row-start: row-start 1;
+    grid-column-start: col-start 3;
     background-image: url("./images/pwoff.png");
     background-size: cover;
     width: 24px;
@@ -165,7 +194,6 @@ footer {
     right: 0;
     display: grid;
     padding: 15px;
-    background-color: rgba(0, 0, 0, 0.652);
 
 }
 
