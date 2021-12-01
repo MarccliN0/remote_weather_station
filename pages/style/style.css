@@ -7,27 +7,22 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
     color: rgb(255, 255, 255);
+    display: grid;
 
 }
-a {
-    display: block;
-}
-a:link, a:visited {
-    background-color: #4315af8a;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-  }
-  
-  a:hover, a:active {
-    background-color: #5016daad;
-  }
+
+
 .body-div {
-    background-color: rgba(0, 0, 0, 0.652);
+    border-radius: 25px;
+    border: 2px solid #eff5e8;
+    background-color: rgba(0, 0, 0, 0.8);
     display: grid;
-    padding: 8%;
+    position: fixed;
+    padding: 20px;
+    top: 150px;
+    left: 450px;
+    right: 450px;
+    
 
 }
 
@@ -68,9 +63,9 @@ a:link, a:visited {
 }
 
 .username-div {
-    grid-row-start: row-start 2;
+    grid-row-start: row-start 1;
     grid-column-start: col-start 1;
-    grid-column-end: span 2;
+    grid-column-end: span 4;
     font-size: 25px;
     color: rgb(255, 255, 255);
     padding: 20px;
@@ -89,9 +84,9 @@ a:link, a:visited {
 
 
 .password-div {
-    grid-row-start: row-start 2;
-    grid-column-start: col-start 3;
-    grid-column-end: span 2;
+    grid-row-start: row-start 3;
+    grid-column-start: col-start 1;
+    grid-column-end: span 4;
     font-size: 25px;
     color: rgb(255, 255, 255);
     padding: 20px;
@@ -124,7 +119,7 @@ a:link, a:visited {
 }
 
 .login {
-    grid-row-start: row-start 3;
+    grid-row-start: row-start 4;
     grid-column-start: col-start 2;
     grid-column-end: span 1;
     font-size: 25px;
@@ -137,7 +132,7 @@ a:link, a:visited {
 }
 
 .register {
-    grid-row-start: row-start 3;
+    grid-row-start: row-start 4;
     grid-column-start: col-start 3;
     grid-column-end: span 1;
     background-color: rgba(0, 0, 0, 0.652);
@@ -151,8 +146,12 @@ a:link, a:visited {
 }
 
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: grid;
-    padding: 25px;
+    padding: 15px;
     background-color: rgba(0, 0, 0, 0.652);
 
 }
@@ -200,4 +199,23 @@ footer {
     padding: 10px;
     font-size: 15px;
 
+}
+
+a {
+    display: block;
+}
+
+a:link,
+a:visited {
+    background-color: #4315af8a;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover,
+a:active {
+    background-color: #5016daad;
 }
