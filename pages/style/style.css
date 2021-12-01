@@ -1,6 +1,6 @@
 body {
 
-    background-image: url("./images/Jungle.png");
+    background-image: url("./images/bg7.jpg");
     background-size: cover;
     background-color: #cccccc;
     padding: 20px;
@@ -11,6 +11,12 @@ body {
 
 }
 
+.header-index{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
 
 .body-div {
     border-radius: 25px;
@@ -207,7 +213,7 @@ a {
 
 a:link,
 a:visited {
-    background-color: #4315af8a;
+    background-color: #15af228a;
     color: white;
     padding: 14px 25px;
     text-align: center;
@@ -217,5 +223,5 @@ a:visited {
 
 a:hover,
 a:active {
-    background-color: #5016daad;
+    background-color: #16da16ad;
 }
