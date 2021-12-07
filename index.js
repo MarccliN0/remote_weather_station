@@ -52,8 +52,9 @@ app
     //TODO: implement sending data to LPCXpresso 1549 board
   })
 
-  .delete('/deletAccount', (req, res) => {
-
+  .delete('/deleteAccount', (req, res) => {
+    //db.users.find({username: "user"});
+    //db.users.remove({username: "user"})
 
     //TODO: implement a way to delete a user profile and all the data with it
   })

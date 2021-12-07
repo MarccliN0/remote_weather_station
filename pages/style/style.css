@@ -265,3 +265,35 @@ a:hover,
 a:active {
     background-color: #16da16ad;
 }
+
+.backToIndex {
+    background-color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 25px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid black;
+    width: 500px;
+    border-radius: 5px;
+}
+
+.showGraph {
+    background-color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 25px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid black;
+    width: 500px;
+    border-radius: 5px;
+}
+
+.indx_div {
+
+}
+
+.grph_div {
+    
+}

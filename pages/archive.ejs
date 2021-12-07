@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <link rel="shortcut icon" type="image/jpg" href="./style/images/Tree Icon.png" />
   <link rel="stylesheet" href="./style/style.css">
-  <title>ConEnv Archive</title>
+  <title>Controlled Environment - Archive</title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@
      <% for (const item of userSettings) { %>
       <% if (item.mode == "Manual") { %>
         <tr>
-            <td><%- item.time %></td>
+           <td><%- item.time %></td>
            <td><%- item.temperature %> </td> 
            <td><%- item.lightLevel %> </td>
            <td><%- item.humidity %></td>  
@@ -51,8 +51,12 @@
         <% } %>
       </table>
 
-      <button type="submit" class="backToIndex">Back to index</button>
-      <button type="submit" class="showGraph">Show graph</button>
+      <div class="indx_div">
+        <button type="submit" class="backToIndex">Index</button>
+      </div>
+      <div class="grph_div">
+        <button type="submit" class="showGraph">Show graph</button>
+      </div>
     <script async src="script/archive.js"></script>
 </body>
 
