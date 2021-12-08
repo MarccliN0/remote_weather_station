@@ -42,7 +42,7 @@
      <% for (const item of userSettings) { %>
       <% if (item.mode == "Manual") { %>
         <tr>
-           <td><%- item.time %></td>
+           <td><%- new Date(item.time).toLocaleString('en-GB', { hour12:false } ) %></td>
            <td><%- item.temperature %> </td> 
            <td><%- item.lightLevel %> </td>
            <td><%- item.humidity %></td>  
