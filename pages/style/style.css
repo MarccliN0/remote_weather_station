@@ -148,7 +148,6 @@ form i {
 .no-show {
     margin-left: -30px;
     margin-top: 2px;
-
     cursor: pointer;
     grid-row-start: row-start 1;
     grid-column-start: col-start 3;
