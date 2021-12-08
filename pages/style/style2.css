@@ -92,22 +92,48 @@ select {
 }
 
 .sendSettings {
-    grid-row-start: 6;
+    margin-top: -30px;
+    grid-row-start: 4;
     grid-column-start: col-start 0;
     grid-column-end: span 2;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgba(95, 158, 160, 0.356);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    text-align: center;
 }
 
 .logout {
-    grid-row-start: 6;
+    grid-row-start: 4;
     grid-column-start: col-start 2;
     grid-column-end: span 2;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgba(95, 158, 160, 0.356);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: -30px;
+
 
 }
 
 .toArchive {
-    grid-row-start: 6;
+    grid-row-start: 4;
     grid-column-start: col-start 4;
     grid-column-end: span 2;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgba(95, 158, 160, 0.356);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: -30px;
+
 
 }
 
@@ -185,30 +211,5 @@ a:active {
     background-color: #16da16ad;
 }
 
-.backToIndex {
-    background-color: grey;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 25px;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: 1px solid black;
-    width: 500px;
-    border-radius: 5px;
-}
 
-.showGraph {
-    background-color: grey;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 25px;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: 1px solid black;
-    width: 500px;
-    border-radius: 5px;
-}
 
-.indx_div {}
-
-.grph_div {}
