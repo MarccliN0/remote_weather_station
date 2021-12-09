@@ -1,21 +1,47 @@
-var xValues = ["Lizard", "Snake", "Green plant", "Cactus", "Hamster", "Manual"];
-var yValues = [78, 35, 67, 8, 21, 112];
-var barColors = ["red", "green","blue","orange","brown","yellow"];
+let temp = [];
+let humidity = [];
+let lightLevel = [];
+let xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
+
+fetch('/chart', {method: 'GET'})
+.then(async (response) => {
+  const data = await response.json();
+  console.log(data);
+
+  for(const item of data){
+    temp.push(item.temperature)
+    humidity.push(item.humidity)
+    lightLevel.push(item.lightLevel)
+  }
+
+  console.log(xValues, temp, humidity)
 new Chart("myChart", {
-  type: "bar",
+  type: "line",
   data: {
     labels: xValues,
     datasets: [{
-      backgroundColor: barColors,
-      data: yValues
+      borderColor: "blue",
+      data: temp,
+      fill: false
+    },{
+      data: humidity,
+      borderColor: "green",
+      fill:false
+    },{
+      data: lightLevel,
+      borderColor: "green",
+      fill: false
     }]
   },
   options: {
     legend: {display: false},
     title: {
       display: true,
-      text: "Time used in all modes"
+      text: "Data"
     }
   }
 });
+})
+

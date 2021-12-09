@@ -121,6 +121,12 @@ app
     res.render('archive.ejs', {userSettings: userSettings});
   })
 
+  .get('/chart', async (req, res) => {
+    let db = await readDB('userSettings');
+    const userSettings = await db.find().toArray();
+    res.send(userSettings);
+  })
+
   .get('/logout', (req, res) => {
     //cookie not getting deleted in any methods, tried giving it the same properties and setting maxAge also, nothing works...
     res.clearCookie("idcookie");
