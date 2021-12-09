@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <link rel="shortcut icon" type="image/jpg" href="./style/images/Tree Icon.png" />
   <link rel="stylesheet" href="./style/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <title>Controlled Environment - Archive</title>
 </head>
 
@@ -58,9 +59,12 @@
         <button type="submit" class="showGraph">Show graph</button>
       </div>
       <div class="graph_button">
-        Test text
+        <div class="graph_area">
+          <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+        </div>
       </div>
     <script async src="script/archive.js"></script>
+    <script async src="script/chart.js"></script>
 </body>
 
 </html>
