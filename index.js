@@ -66,8 +66,6 @@ app
     if (!userMatch.length || userMatch[0].password != pw) return 
     db.deleteOne({username:username});
     res.redirect('/')
-  
-
   })
 
   .get('/getCurrentValue',  (req, res) => {
