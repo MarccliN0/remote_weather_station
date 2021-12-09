@@ -10,8 +10,6 @@ document.querySelector('.password').addEventListener('keypress', function(e){
 
 document.querySelector('.username').addEventListener('keypress', function(e){
   if(e.key === 'Enter'){
-    let password = document.querySelector('.password').value;
-    if(password == '') return window.alert('Please enter a password!')
     document.querySelector('.login').click();
   }
 })
@@ -19,6 +17,7 @@ document.querySelector('.username').addEventListener('keypress', function(e){
 login.addEventListener('click', async (e) => {
   let username = document.querySelector('.username').value;
   let password = document.querySelector('.password').value;
+  if(!password) return window.alert('Please enter a password!')
 
   let data = {
     username,

@@ -105,10 +105,10 @@ sendSettings.addEventListener('click', async () => {
 
 const logout = document.querySelector('.logout');
 
-logout.addEventListener('click', e => {
-  e.preventDefault();
-  document.cookie = "idcookie=; Max-Age=0";
+logout.addEventListener('click', async e => {
+  fetch('/logout');
   window.location = '/'
+  e.preventDefault();
 })
 
 const toArchive = document.querySelector('.toArchive');
