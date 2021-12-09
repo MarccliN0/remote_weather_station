@@ -139,7 +139,7 @@ sendSettings.addEventListener('click', async () => {
 const logout = document.querySelector('.logout');
 
 logout.addEventListener('click', async e => {
-  fetch('/logout');
+  fetch('/logout', {method : 'POST'});
   window.location = '/'
   e.preventDefault();
 })

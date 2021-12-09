@@ -30,7 +30,7 @@ async function readDB(CollectionName) {
 
 const salt = 'neverguess'; //salt for passsowrd encrytion
 
-let loginaccess = true; //boolean to tell last state of authentication process
+let loginaccess = false; //boolean to tell last state of authentication process
 
 //TODO: implement a better authentication system than browser pop-up
 //DONE -- working :D kinda, except the logout
@@ -47,6 +47,7 @@ function authentication(req, res, next) {
 app
 
   .get('/', (req, res) => {
+    console.log(loginaccess)
    res.sendFile(path.join(__dirname, 'pages/login.html')); 
   })
 
@@ -127,11 +128,10 @@ app
     res.send(userSettings);
   })
 
-  .get('/logout', (req, res) => {
+  .post('/logout', (req, res) => {
     //cookie not getting deleted in any methods, tried giving it the same properties and setting maxAge also, nothing works...
-    res.clearCookie("idcookie");
     loginaccess = false;
-    console.log('cookie cleared')
+    res.clearCookie('idcookie')
   })
 
 
