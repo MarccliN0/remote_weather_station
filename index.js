@@ -52,11 +52,21 @@ app
     //TODO: implement sending data to LPCXpresso 1549 board
   })
 
-  .delete('/deleteAccount', (req, res) => {
+  .delete('/deleteAccount', async(req, res) => {
     //db.users.find({username: "user"});
     //db.users.remove({username: "user"})
 
     //TODO: implement a way to delete a user profile and all the data with it
+    const db = await readDB('users');
+    const username = req.body.username;
+    const userMatch = await db.find({ username: username }).toArray();
+    console.log(username);
+    const pw = pbkdf2.pbkdf2Sync(req.body.password, salt, 1, 32, 'sha512').toString('hex');
+
+    if (!userMatch.length || userMatch[0].password != pw) return 
+    db.deleteOne({username:username});
+    res.redirect('/')
+
   })
 
   .get('/getCurrentValue',  (req, res) => {
