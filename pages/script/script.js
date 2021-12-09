@@ -34,56 +34,89 @@ sendSettings.addEventListener('click', async () => {
 
 
   if(mode.value == 'Automatic'){
-    if(scheme == 'Lizard'){
+    if(scheme == 'Summer Beach Time'){
       const data = {
         mode: mode.value,
         scheme,
-        temperature: '30',
+        temperature: '25',
+        humidity: '40',
+        lightLevel: '--',
+        time: Date.now()
+      }
+      await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+    }
+    if(scheme == 'Summer Chilly'){
+      const data = {
+        mode: mode.value,
+        scheme,
+        temperature: '15',
+        humidity: '70',
+        lightLevel: '--',
+        time: Date.now()
+      }
+      await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+    }
+    if(scheme == 'Autumn walk'){
+      const data = {
+        mode: mode.value,
+        scheme,
+        temperature: '15',
         humidity: '50',
         lightLevel: '--',
         time: Date.now()
       }
       await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
     }
-    if(scheme == 'Snake'){
+    if(scheme == 'Autumn home with book'){
       const data = {
         mode: mode.value,
         scheme,
-        temperature: '40',
-        humidity: '60',
-        lightLevel: '--',
-        time: Date.now()
-      }
-      await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
-    }
-    if(scheme == 'Green plant'){
-      const data = {
-        mode: mode.value,
-        scheme,
-        temperature: '25',
-        humidity: '75',
-        lightLevel: '--',
-        time: Date.now()
-      }
-      await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
-    }
-    if(scheme == 'Cactus'){
-      const data = {
-        mode: mode.value,
-        scheme,
-        temperature:'45',
-        humidity:'50',
+        temperature:'5',
+        humidity:'75',
         lightLevel:'--',
         time: Date.now()
       }
       await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
     }
-    if(scheme == 'Hamster'){
+    if(scheme == 'Winter snowball competition'){
       const data = {
         mode:mode.value,
         scheme,
-        temperature:'25',
-        humidity:'65',
+        temperature:'0',
+        humidity:'25',
+        lightLevel:'--',
+        time: Date.now()
+      }
+      await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+    }
+    if(scheme == 'Winter frozen nose hair'){
+      const data = {
+        mode:mode.value,
+        scheme,
+        temperature:'-20',
+        humidity:'10',
+        lightLevel:'--',
+        time: Date.now()
+      }
+      await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+    }
+    if(scheme == 'Spring Only Sweater time'){
+      const data = {
+        mode:mode.value,
+        scheme,
+        temperature:'10',
+        humidity:'40',
+        lightLevel:'--',
+        time: Date.now()
+      }
+      await fetch('/postSettings', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+    }
+    if(scheme == 'Spring stay at home drunk'){
+      const data = {
+        mode:mode.value,
+        scheme,
+        temperature:'0',
+        humidity:'70',
         lightLevel:'--',
         time: Date.now()
       }
