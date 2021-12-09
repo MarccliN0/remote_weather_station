@@ -66,7 +66,7 @@ app
     if (!userMatch.length || userMatch[0].password != pw) return 
     db.deleteOne({username:username});
     res.redirect('/')
-    console.log("USer deleted");
+    console.log("User deleted");
 
   })
 
