@@ -1,5 +1,4 @@
-body {
-
+.archive_page_index {
     background-image: url("./images/bg7.jpg");
     background-size: cover;
     background-color: #cccccc;
@@ -8,7 +7,18 @@ body {
     font-size: 25px;
     color: rgb(255, 255, 255);
     display: grid;
+}
 
+.archive_page_bg {
+    background-image: url("./images/bgblack.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #cccccc;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    display: grid;
 }
 
 .header-index {
@@ -317,4 +327,21 @@ a:active {
     border: 1px solid black;
     width: 1000px;
     border-radius: 5px;
+}
+
+.archiveSetting {
+    border: 1px solid #333;
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.table_set {
+    background-color: #333;
+    color:#fff"
+}
+
+.table_set_tr {
+    background-color: rgba(95, 158, 160, 0.356);
+    border:1px solid #333;
 }

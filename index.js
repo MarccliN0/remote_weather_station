@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 //MongoDB Cluster connection
 const url = 'mongodb+srv://Marci:Marci0704@iot3.s87ch.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//const url = 'mongodb+srv://Marwan:1qaz2wsx@cluster0.oy2cj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const clientdb = new MongoClient(url);
 
 
