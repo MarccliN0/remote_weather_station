@@ -17,8 +17,8 @@ setInterval(() => {
   fetch('/getCurrentValue')
   .then(async(response) => {
     const data = await response.json();
-    currentTemp.innerText = 'Current temperature:' + data.temp + ' C';
-    currentHumidity.innerText = 'Current humidity:' + data.humidity;
+    currentTemp.innerText = 'Current temperature:' + data.temperature + ' C';
+    currentHumidity.innerText = 'Current humidity:' + data.humidity + '%';
     currentLightLevel.innerText = 'Current light level:' + data.lightLevel;
   })
 }, 1000);

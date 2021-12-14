@@ -47,7 +47,6 @@ client.on('connect', () => {
 
 function authentication(req, res, next) {
   console.log(loginaccess)
-  if(!loginaccess) return res.redirect('/')
   let idcookie = req.cookies.idcookie;
   if(idcookie) return next();
   res.redirect('/');
@@ -116,8 +115,8 @@ app
 
   .get('/getCurrentValue',  async (req, res) => {
     const db = await readDB('getdata');
-    const data = await db.find().sort({'_id':-1}).limit(1);
-    console.log(data);
+    const data = await db.find().limit(1).sort({$natural:-1}).toArray();
+    res.send(data[0]);
   })
 
   .post('/login', async (req, res) => {
@@ -154,14 +153,13 @@ app
   })
 
   .get('/chart', async (req, res) => {
-    let db = await readDB('userSettings');
-    const userSettings = await db.find().toArray();
-    res.send(userSettings);
+    let db = await readDB('getdata');
+    const data = await db.find().limit(50).sort({$natural:-1}).toArray();
+    res.send(data);
   })
 
   .post('/logout', (req, res) => {
     //cookie not getting deleted in any methods, tried giving it the same properties and setting maxAge also, nothing works...
-    loginaccess = false;
     res.clearCookie('idcookie')
   })
 
