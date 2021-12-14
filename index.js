@@ -4,7 +4,8 @@ const path = require('path');
 const pbkdf2 = require('pbkdf2');
 const cookieParser = require('cookie-parser');
 const mqtt = require('mqtt')
-const client = mqtt.connect('mqtt:://localhost:1883').subscribe('ConEnv/getdata');
+const receiveClient = mqtt.connect('mqtt:://localhost:1883').subscribe('ConEnv/getdata');
+const sendClient = mqtt.connect('mqtt:://localhost:1883').subscribe('ConEnv/senddata');
 
 const app = express();
 
@@ -33,33 +34,29 @@ async function readDB(CollectionName) {
 
 const salt = 'neverguess'; //salt for passsowrd encrytion
 
-let loginaccess = false; //boolean to tell last state of authentication process
-
 //TODO: implement a better authentication system than browser pop-up
 //DONE -- working :D kinda, except the logout
 
-
-client.on('connect', () => {
-  console.log('Success')
+receiveClient.on('connect', () => {
+  console.log('Success MQTT Connect - receiveClient')
 })
 
-
+sendClient.on('connect', () => {
+  console.log('Success MQTT Connect - sendClient')
+})
 
 function authentication(req, res, next) {
-  console.log(loginaccess)
-  let idcookie = req.cookies.idcookie;
-  if(idcookie) return next();
+  let idcookie = req.cookies.idcookie;  //checking for indetification cookie
+  if(idcookie) return next();   //if found continue, else return to login page
   res.redirect('/');
 }
-
-
 
 app
 
   .use(async (req, res, next) => {
   const promise = new Promise((resolve, reject) => {
-    client.on('message', (topic, message) => {
-      resolve(JSON.parse(message.toString()));
+    receiveClient.on('message', (topic, message) => {
+      resolve(JSON.parse(message.toString())); 
     })
   })
 
@@ -81,7 +78,6 @@ app
 })
 
   .get('/', (req, res) => {
-    console.log(loginaccess)
    res.sendFile(path.join(__dirname, 'pages/login.html')); 
   })
 
@@ -94,7 +90,15 @@ app
     const db = await readDB('userSettings');
     console.log(data);
     await db.insertMany([data]);
-    //TODO: implement sending data to LPCXpresso 1549 board
+    const newData = {
+      temperature: data.temperature,
+      humidity: data.humidity,
+      lightlevel: data.lightlevel
+    }
+    const buffer = JSON.stringify(newData);
+    console.log(buffer);
+    sendClient.publish('ConEnv/senddata', buffer);
+
   })
 
   .delete('/deleteAccount', async(req, res) => {
