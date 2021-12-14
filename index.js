@@ -3,6 +3,8 @@ const { MongoClient } = require('mongodb');
 const path = require('path');
 const pbkdf2 = require('pbkdf2');
 const cookieParser = require('cookie-parser');
+const mqtt = require('mqtt')
+const client = mqtt.connect('mqtt:://localhost:1883').subscribe('ConEnv/getdata');
 
 const app = express();
 
@@ -28,13 +30,45 @@ const salt = 'neverguess';
 //TODO: implement a better authentication system than browser pop-up
 
 
+client.on('connect', () => {
+  console.log('Success')
+})
+
+
+
 function authentication(req, res, next) {
   let idcookie = req.cookies.idcookie;
   if(idcookie) return next();
   res.redirect('/');
 }
 
+
+
 app
+
+  .use(async (req, res, next) => {
+  const promise = new Promise((resolve, reject) => {
+    client.on('message', (topic, message) => {
+      resolve(JSON.parse(message.toString()));
+    })
+  })
+
+  const data = await promise;
+
+  try {
+    const db = await readDB('getdata');
+    const newData = {
+      timestamp: Date.now(),
+      temperature: data.Temperature,
+      humidity: data.Humidity
+    };
+    await db.insertMany([newData]);
+    return next();
+  } catch (e) {
+    console.log(e);
+  }
+  return next();
+})
 
   .get('/', (req, res) => {
    res.sendFile(path.join(__dirname, 'pages/login.html')); 
@@ -59,14 +93,10 @@ app
     //TODO: implement a way to delete a user profile and all the data with it
   })
 
-  .get('/getCurrentValue',  (req, res) => {
-    //TODO: implement getting data from LPCXpresso 1549 board
-    const data = {
-      temp: '25',
-      humidity: '70%',
-      lightLevel: '--'
-    }
-    res.send(data);
+  .get('/getCurrentValue',  async (req, res) => {
+    const db = await readDB('getdata');
+    const data = await db.find().sort({'_id':-1}).limit(1);
+    console.log(data);
   })
 
   .post('/login', async (req, res) => {
