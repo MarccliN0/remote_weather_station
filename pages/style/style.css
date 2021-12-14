@@ -1,5 +1,4 @@
-body {
-
+.archive_page_index {
     background-image: url("./images/bg7.jpg");
     background-size: cover;
     background-color: #cccccc;
@@ -8,7 +7,18 @@ body {
     font-size: 25px;
     color: rgb(255, 255, 255);
     display: grid;
+}
 
+.archive_page_bg {
+    background-image: url("./images/bgblack.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #cccccc;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    display: grid;
 }
 
 .header-index {
@@ -23,6 +33,7 @@ body {
     border: 2px solid #eff5e8;
     background-color: rgba(0, 0, 0, 0.8);
     display: grid;
+    grid-row-gap:10px;
     position: fixed;
     padding: 20px;
     top: 150px;
@@ -158,7 +169,7 @@ form i {
 }
 
 .login {
-    width: 150px;
+    width: 190px;
 
     border-radius: 50px;
     border: 2px solid #eff5e8;
@@ -171,11 +182,13 @@ form i {
     padding: 20px;
     text-align: center;
     margin: auto;
+    margin-right: 5px;
+
 
 }
 
 .register {
-    width: 150px;
+    width: 190px;
     border-radius: 50px;
     border: 2px solid #eff5e8;
     grid-row-start: row-start 4;
@@ -188,9 +201,24 @@ form i {
     padding: 20px;
     text-align: center;
     margin: auto;
+    margin-left: 5px;
 
 }
-
+.delete{
+     width:400px;
+    border-radius: 50px;
+    border: 2px solid #eff5e8;
+    grid-row-start: row-start 5;
+    grid-column-start: col-start 2;
+    grid-column-end: span 2;
+    background-color: rgba(0, 0, 0, 0.652);
+    background-color: rgba(0, 0, 0, 0.652);
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+}
 footer {
     position: fixed;
     bottom: 0;
@@ -289,10 +317,31 @@ a:active {
     border-radius: 5px;
 }
 
-.indx_div {
-
+.graph_area {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 25px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid black;
+    width: 1000px;
+    border-radius: 5px;
 }
 
-.grph_div {
-    
+.archiveSetting {
+    border: 1px solid #333;
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.table_set {
+    background-color: #333;
+    color:#fff"
+}
+
+.table_set_tr {
+    background-color: rgba(95, 158, 160, 0.356);
+    border:1px solid #333;
 }

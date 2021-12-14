@@ -5,14 +5,15 @@
   <meta charset="UTF-8">
   <link rel="shortcut icon" type="image/jpg" href="./style/images/Tree Icon.png" />
   <link rel="stylesheet" href="./style/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <title>Controlled Environment - Archive</title>
 </head>
 
-<body>
+<body class="archive_page_bg">
   <h1>Archive</h1>
   <h2>Automatic mode Archive</h2>
-  <table class="archiveSetting" style="border:1px solid #333">
-    <thead style="background-color:#333; color:#fff">
+  <table class="archiveSetting">
+    <thead class="table_set">
       <td>Scheme</td>
       <td>Timestamp</td>
       <td>Temperature</td>
@@ -21,7 +22,7 @@
     </thead>
     <% for (const item of userSettings) { %>
       <% if (item.mode  =="Automatic" ) { %> 
-        <tr style="border:1px solid #333">
+        <tr class="table_set_tr">
           <td><%- item.scheme%></td>
           <td><%- new Date(item.time).toLocaleString('en-GB', { hour12:false } ) %></td>
           <td><%- item.temperature %> </td> 
@@ -32,8 +33,8 @@
       <% } %>
     </table>
      <h2>Manual mode archive</h2>
-     <table class="archiveSetting" style="border:1px solid #333">
-       <thead style="background-color:#333; color:#fff">
+     <table class="archiveSetting">
+       <thead class="table_set">
          <td>Timestamp</td>
          <td>Temperature</td>
          <td>Light Level</td>
@@ -41,7 +42,7 @@
        </thead>
      <% for (const item of userSettings) { %>
       <% if (item.mode == "Manual") { %>
-        <tr>
+        <tr class="table_set_tr">
            <td><%- new Date(item.time).toLocaleString('en-GB', { hour12:false } ) %></td>
            <td><%- item.temperature %> </td> 
            <td><%- item.lightLevel %> </td>
@@ -58,9 +59,12 @@
         <button type="submit" class="showGraph">Show graph</button>
       </div>
       <div class="graph_button">
-        Test text
+        <div class="graph_area">
+          <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+        </div>
       </div>
     <script async src="script/archive.js"></script>
+    <script async src="script/chart.js"></script>
 </body>
 
 </html>

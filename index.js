@@ -14,9 +14,15 @@ app.use(express.json());
 app.use(express.static('pages'))
 app.use(cookieParser());
 
+
+//MongoDB Cluster connection
 const url = 'mongodb+srv://Marci:Marci0704@iot3.s87ch.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//const url = 'mongodb+srv://Marwan:1qaz2wsx@cluster0.oy2cj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const clientdb = new MongoClient(url);
 
+
+
+//function for MongoDB collection connection
 async function readDB(CollectionName) {
   await clientdb.connect();
   const db = clientdb.db('Project');
@@ -25,9 +31,12 @@ async function readDB(CollectionName) {
   return collection;
 }
 
-const salt = 'neverguess';
+const salt = 'neverguess'; //salt for passsowrd encrytion
+
+let loginaccess = false; //boolean to tell last state of authentication process
 
 //TODO: implement a better authentication system than browser pop-up
+//DONE -- working :D kinda, except the logout
 
 
 client.on('connect', () => {
@@ -37,6 +46,8 @@ client.on('connect', () => {
 
 
 function authentication(req, res, next) {
+  console.log(loginaccess)
+  if(!loginaccess) return res.redirect('/')
   let idcookie = req.cookies.idcookie;
   if(idcookie) return next();
   res.redirect('/');
@@ -71,6 +82,7 @@ app
 })
 
   .get('/', (req, res) => {
+    console.log(loginaccess)
    res.sendFile(path.join(__dirname, 'pages/login.html')); 
   })
 
@@ -86,11 +98,20 @@ app
     //TODO: implement sending data to LPCXpresso 1549 board
   })
 
-  .delete('/deleteAccount', (req, res) => {
-    //db.users.find({username: "user"});
-    //db.users.remove({username: "user"})
-
+  .delete('/deleteAccount', async(req, res) => {
     //TODO: implement a way to delete a user profile and all the data with it
+    //DONE -- working :D
+    const db = await readDB('users');
+    const username = req.body.username;
+    const userMatch = await db.find({ username: username }).toArray();
+    console.log(username);
+    const pw = pbkdf2.pbkdf2Sync(req.body.password, salt, 1, 32, 'sha512').toString('hex');
+
+    if (!userMatch.length || userMatch[0].password != pw) return 
+    db.deleteOne({username:username});
+    res.redirect('/')
+    console.log(`User deleted: username: ${username}`);
+
   })
 
   .get('/getCurrentValue',  async (req, res) => {
@@ -108,6 +129,7 @@ app
 
     if (!userMatch.length || userMatch[0].password != pw) return 
     res.cookie("idcookie", `${username}:${pw}`, { httpOnly: true, expires: new Date(Date.now() + 900000) });
+    loginaccess = true;
     res.redirect('/index')
   })
 
@@ -121,8 +143,8 @@ app
       password: pw
     }
     db.insertMany([data]);
-    res.cookie("idcookie", `${username}:${pw}`, { httpOnly: true, expires: new Date(Date.now() + 900000) });
-    res.redirect('/index')
+    res.cookie("idcookie", `${username}:${pw}`, {path: '/', expires: new Date(Date.now() + 900000) });
+    res.redirect('/index');
   })
 
   .get('/archive', authentication, async (req, res) => {
@@ -131,8 +153,22 @@ app
     res.render('archive.ejs', {userSettings: userSettings});
   })
 
+  .get('/chart', async (req, res) => {
+    let db = await readDB('userSettings');
+    const userSettings = await db.find().toArray();
+    res.send(userSettings);
+  })
+
+  .post('/logout', (req, res) => {
+    //cookie not getting deleted in any methods, tried giving it the same properties and setting maxAge also, nothing works...
+    loginaccess = false;
+    res.clearCookie('idcookie')
+  })
+
 
 //TODO: implement logging out mechanics
+//DONE -- working :D
+
 
 //TODO: customize with css
 
