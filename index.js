@@ -1,5 +1,5 @@
 const express = require("express");
-const { MongoClient } = require('mongodb');
+const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const pbkdf2 = require('pbkdf2');
 const cookieParser = require('cookie-parser');
@@ -16,21 +16,29 @@ app.use(express.static('pages'))
 app.use(cookieParser());
 
 
-//MongoDB Cluster connection
-const url = 'mongodb+srv://Marci:Marci0704@iot3.s87ch.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//MongoDB Cluster connection 
+//const url = "mongodb://localhost:27017"
+//const url = 'mongodb+srv://Marci:Marci0704@iot3.s87ch.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 //const url = 'mongodb+srv://Marwan:1qaz2wsx@cluster0.oy2cj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const clientdb = new MongoClient(url);
+//const clientdb = new MongoClient(url);
 
 
 
 //function for MongoDB collection connection
-async function readDB(CollectionName) {
-  await clientdb.connect();
-  const db = clientdb.db('Project');
-  const collection = db.collection(CollectionName);
+// async function readDB(CollectionName) {
+//   await clientdb.connect();
+//   const db = clientdb.db('Project');
+//   const collection = db.collection(CollectionName);
 
-  return collection;
-}
+//   return collection;
+// }
+
+let db = new sqlite3.Database('./IoTProject.db', sqlite3.OPEN_READWRITE, (err) => {
+	if (err) {
+		return console.log(err);
+	}
+	console.log('Successfull connection');
+})
 
 const salt = 'neverguess'; //salt for passsowrd encrytion
 
@@ -53,29 +61,28 @@ function authentication(req, res, next) {
 
 app
 
-  .use(async (req, res, next) => {
-  const promise = new Promise((resolve, reject) => {
-    receiveClient.on('message', (topic, message) => {
-      return resolve(JSON.parse(message.toString())); 
-    })
-    return next();
-  })
+//   .use(async (req, res, next) => {
 
-  const data = await promise;
-  try {
-    const db = await readDB('getdata');
-    const newData = {
-      timestamp: Date.now(),
-      temperature: data.Temperature,
-      humidity: data.Humidity
-    };
-    await db.insertMany([newData]);
-    return next();
-  } catch (e) {
-    console.log(e);
-  }
-  return next();
-})
+//   const promise = new Promise((resolve, reject) => {
+//     receiveClient.on('message', (topic, message) => {
+//       resolve(JSON.parse(message.toString()));
+//       receiveClient.off('message');
+//     })
+//   })
+
+//   const data = await promise;
+//   if(!data) return next();
+//   try {
+//     let sql = 'INSERT INTO getdata (temperature, humidity, timestamp) VALUE (?,?,?)'
+//     db.run(sql, [data.Temperature, data.Humidity, Date.now()], (err) => {
+//       if (err) return console.log(err)
+//       return next();
+//     })
+//   } catch (e) {
+//     console.log(e);
+//   }
+//   return next();
+// })
 
   .get('/', (req, res) => {
    res.sendFile(path.join(__dirname, 'pages/login.html')); 
@@ -87,16 +94,16 @@ app
 
   .post('/postSettings', async (req, res) => {
     const data = req.body;
-    const db = await readDB('userSettings');
-    console.log(data);
-    await db.insertMany([data]);
+    let sql = 'INSERT INTO userSettings (mode, scheme, time, temperature, humidity, lightlevel) VALUES (?,?,?,?,?,?)';
+    db.run(sql, [data.mode, data.scheme, Date.now(), data.temperature, data.humidity, data.lightlevel], (err) => {
+      if (err) return console.log(err)
+    })
     const newData = {
       temperature: data.temperature,
       humidity: data.humidity,
       lightlevel: data.lightlevel
     }
     const buffer = JSON.stringify(newData);
-    console.log(buffer);
     sendClient.publish('ConEnv/senddata', buffer);
 
   })
@@ -104,62 +111,74 @@ app
   .delete('/deleteAccount', async(req, res) => {
     //TODO: implement a way to delete a user profile and all the data with it
     //DONE -- working :D
-    const db = await readDB('users');
-    const username = req.body.username;
-    const userMatch = await db.find({ username: username }).toArray();
-    console.log(username);
-    const pw = pbkdf2.pbkdf2Sync(req.body.password, salt, 1, 32, 'sha512').toString('hex');
-
-    if (!userMatch.length || userMatch[0].password != pw) return 
-    db.deleteOne({username:username});
-    res.redirect('/')
-    console.log(`User deleted: username: ${username}`);
+    let sql = 'DELETE FROM Users WHERE username = ?';
+    db.run(sql, [req.body.username], (err) => {
+			if (err) return console.log(err)
+      console.log(`User deleted: username: ${req.body.username}`);
+			res.redirect('/')
+		})
 
   })
 
   .get('/getCurrentValue',  async (req, res) => {
-    const db = await readDB('getdata');
-    const data = await db.find().limit(1).sort({$natural:-1}).toArray();
-    res.send(data[0]);
+    let sql = 'SELECT * FROM getdata ORDER BY timestamp DESC LIMIT 1'
+    db.all(sql, [], (err, results) => {
+			if (err) return console.log(err)
+      res.send(results[0])
+    })
   })
 
   .post('/login', async (req, res) => {
-    const db = await readDB('users');
     const username = req.body.username;
-    const userMatch = await db.find({ username: username }).toArray();
 
     const pw = pbkdf2.pbkdf2Sync(req.body.password, salt, 1, 32, 'sha512').toString('hex');
 
-    if (!userMatch.length || userMatch[0].password != pw) return 
+    const promise = new Promise((resolve, reject) => {
+      let sql = 'SELECT * FROM Users WHERE username = ?';
+      db.all(sql, [username], (err, result) => {
+        if (err) {
+          console.log(err)
+          reject(err);
+          return;
+        }
+        if (pw == result[0].password) return resolve(true);
+        return resolve(false)
+      })
+    })
+
+    let success = await promise;
+    if(success != true) return res.redirect('/');
     res.cookie("idcookie", `${username}:${pw}`, { httpOnly: true, expires: new Date(Date.now() + 900000) });
-    loginaccess = true;
     res.redirect('/index')
   })
 
   .post('/register', async (req, res) => {
-    const db = await readDB('users');
     const username = req.body.username;
     const pw = pbkdf2.pbkdf2Sync(req.body.password, salt, 1, 32, 'sha512').toString('hex');
 
-    const data = {
-      username: username,
-      password: pw
-    }
-    db.insertMany([data]);
+    let sql = 'INSERT INTO Users (username, password) VALUES (?,?)'
+    db.run(sql, [username, pw], (err) => {
+      if (err) return console.log(err)
+    })
+
     res.cookie("idcookie", `${username}:${pw}`, {path: '/', expires: new Date(Date.now() + 900000) });
     res.redirect('/index');
   })
 
   .get('/archive', authentication, async (req, res) => {
-    let db = await readDB('userSettings');
-    const userSettings = await db.find().toArray();
-    res.render('archive.ejs', {userSettings: userSettings});
+    let sql = 'SELECT * FROM userSettings';
+    db.all(sql, [], (err, results) => {
+			if (err) return console.log(err)
+      res.render('archive.ejs', {userSettings: results});
+    })
   })
 
   .get('/chart', async (req, res) => {
-    let db = await readDB('getdata');
-    const data = await db.find().limit(50).sort({$natural:-1}).toArray();
-    res.send(data);
+    let sql = 'SELECT * FROM getdata ORDER BY timestamp DESC LIMIT 50'
+    db.all(sql, [], (err, results) => {
+			if (err) return console.log(err)
+      res.send(results);
+    })
   })
 
   .post('/logout', (req, res) => {
