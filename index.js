@@ -60,7 +60,7 @@ function authentication(req, res, next) {
 }
 
 app
-
+//IMPORTANT!! -- Only use the following part when LPC Sends data otherwise, the website stalls.
 //   .use(async (req, res, next) => {
 
 //   const promise = new Promise((resolve, reject) => {
