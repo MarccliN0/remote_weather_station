@@ -56,12 +56,12 @@ app
   .use(async (req, res, next) => {
   const promise = new Promise((resolve, reject) => {
     receiveClient.on('message', (topic, message) => {
-      resolve(JSON.parse(message.toString())); 
+      return resolve(JSON.parse(message.toString())); 
     })
+    return next();
   })
 
   const data = await promise;
-
   try {
     const db = await readDB('getdata');
     const newData = {
