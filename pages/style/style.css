@@ -33,12 +33,13 @@
     border: 2px solid #eff5e8;
     background-color: rgba(0, 0, 0, 0.8);
     display: grid;
-    grid-row-gap:10px;
+    grid-row-gap: 10px;
     position: fixed;
     padding: 20px;
-    top: 150px;
-    left: 450px;
-    right: 450px;
+    bottom: 150px;
+    right: 30%;
+    left: 30%;
+    min-width:450px;
 
 
 }
@@ -68,7 +69,7 @@
 }
 
 .login-submit {
-    
+
     padding: 20px;
     text-align: center;
     margin: auto;
@@ -98,13 +99,15 @@
     grid-column-start: col-start 1;
     font-size: 25px;
     padding-right: 20;
+    width: auto;
+
 }
 
 #username-input {
     grid-row-start: row-start 1;
     grid-column-start: col-start 2;
     grid-column-end: span 2;
-
+    width: auto;
     height: 25px;
     font-size: 20px;
 }
@@ -127,8 +130,9 @@
     grid-column-start: col-start 1;
     font-size: 25px;
     padding-right: 20;
+    width: auto;
 
-    
+
 
 }
 
@@ -138,11 +142,15 @@
     grid-column-end: span 2;
     height: 25px;
     font-size: 20px;
+    width: auto;
+
 }
+
 form i {
     margin-left: -30px;
     cursor: pointer;
 }
+
 .show {
     grid-row-start: row-start 1;
     grid-column-start: col-start 3;
@@ -204,8 +212,9 @@ form i {
     margin-left: 5px;
 
 }
-.delete{
-     width:400px;
+
+.delete {
+    width: 400px;
     border-radius: 50px;
     border: 2px solid #eff5e8;
     grid-row-start: row-start 5;
@@ -219,6 +228,7 @@ form i {
     text-align: center;
     margin: auto;
 }
+
 footer {
     position: fixed;
     bottom: 0;

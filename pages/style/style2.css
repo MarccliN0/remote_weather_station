@@ -8,6 +8,8 @@ body {
     font-size: 25px;
     color: rgb(255, 255, 255);
     display: grid;
+    
+
 
 
 }
@@ -37,6 +39,7 @@ body {
     top: 150px;
     left: 150px;
     right: 150px;
+    min-width: 500px;
 
 
 }
