@@ -36,9 +36,9 @@
     grid-row-gap: 10px;
     position: fixed;
     padding: 20px;
-    top: 150px;
-    left: 30%;
+    bottom: 150px;
     right: 30%;
+    left: 30%;
     min-width:450px;
 
 
