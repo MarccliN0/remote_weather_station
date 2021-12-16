@@ -4,8 +4,9 @@ const path = require('path');
 const pbkdf2 = require('pbkdf2');
 const cookieParser = require('cookie-parser');
 const mqtt = require('mqtt')
-const receiveClient = mqtt.connect('mqtt:://localhost:1883').subscribe('ConEnv/getdata');
-const sendClient = mqtt.connect('mqtt:://localhost:1883').subscribe('ConEnv/senddata');
+const receiveClient = mqtt.connect('mqtt://192.168.1.254:1883').subscribe('ConEnv/getdata');
+const sendClient = mqtt.connect('mqtt://192.168.1.254:1883').subscribe('ConEnv/senddata');
+const Chart = require('chart.js')
 
 const app = express();
 
@@ -59,31 +60,20 @@ function authentication(req, res, next) {
   res.redirect('/');
 }
 
+receiveClient.on('message', (topic, message) => {
+  const data = JSON.parse(message.toString());
+  try {
+    let sql = 'INSERT INTO getdata (temperature, humidity, lightlevel, timestamp) VALUES (?,?,?,?)'
+    db.run(sql, [data.Temperature, data.Humidity, data.lightlevel, Date.now()], (err) => {
+      if (err) return console.log(err)
+    })
+  } catch (e) {
+    console.log(e);
+  }
+})
+
 app
-//IMPORTANT!! -- Only use the following part when LPC Sends data otherwise, the website stalls.
-//   .use(async (req, res, next) => {
-
-//   const promise = new Promise((resolve, reject) => {
-//     receiveClient.on('message', (topic, message) => {
-//       resolve(JSON.parse(message.toString()));
-//       receiveClient.off('message');
-//     })
-//   })
-
-//   const data = await promise;
-//   if(!data) return next();
-//   try {
-//     let sql = 'INSERT INTO getdata (temperature, humidity, timestamp) VALUE (?,?,?)'
-//     db.run(sql, [data.Temperature, data.Humidity, Date.now()], (err) => {
-//       if (err) return console.log(err)
-//       return next();
-//     })
-//   } catch (e) {
-//     console.log(e);
-//   }
-//   return next();
-// })
-
+//IMPORTANT!! -- Only use the following part when LPC Sends data otherwise, the website stalls
   .get('/', (req, res) => {
    res.sendFile(path.join(__dirname, 'pages/login.html')); 
   })
@@ -177,6 +167,7 @@ app
     let sql = 'SELECT * FROM getdata ORDER BY timestamp DESC LIMIT 50'
     db.all(sql, [], (err, results) => {
 			if (err) return console.log(err)
+      console.log(results)
       res.send(results);
     })
   })

@@ -8,15 +8,14 @@ let xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 fetch('/chart', {method: 'GET'})
 .then(async (response) => {
   const data = await response.json();
-  console.log(data);
 
   for(const item of data){
     temp.unshift(item.temperature)
     humidity.unshift(item.humidity)
-    lightLevel.unshift(item.lightLevel)
+    lightLevel.unshift(item.lightlevel)
   }
 
-  console.log(xValues, temp, humidity)
+  console.log(xValues, temp, humidity, lightLevel)
 new Chart("myChart", {
   type: "line",
   data: {
@@ -31,7 +30,7 @@ new Chart("myChart", {
       fill:false
     },{
       data: lightLevel,
-      borderColor: "green",
+      borderColor: "yellow",
       fill: false
     }]
   },
